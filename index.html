@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Event Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <!-- Main content -->
+    <main class="content">
+      <h1>Where Your Vision Meets Perfection</h1>
+      <p>
+        Campus Event Manager is your one-stop solution for organizing and
+        showcasing university activities. Designed to be simple yet powerful, it
+        helps administrators add events effortlessly while giving students a
+        clear, engaging way to explore what’s happening across campus.
+      </p>
+
+      <div class="button-container">
+        <a href="events.html" class="button">Explore Events ➜ </a>
+        <a href="#" class="button view-btn">Learn more</a>
+      </div>
+    </main>
+    <section id="about">
+      <h1>About Us</h1>
+      <div class="about-container">
+        <img
+          src="/pictures/blue-laptop.png"
+          alt="laptop image"
+          class="about-img"
+        />
+        <p class="about-text">
+          Welcome to the Campus Event Manager — a platform designed to bring our
+          university community together. We believe that events are more than
+          just gatherings; they are opportunities to learn, celebrate, and
+          connect.
+          <br /><br />
+          Our mission is to simplify event management by providing a
+          user-friendly system where administrators can easily add and update
+          events, and students can explore upcoming activities with ease. From
+          tech talks and cultural fests to sports galas, we ensure that every
+          event is showcased in a clear, engaging way.
+          <br /><br />
+          Built with simplicity and responsiveness in mind, this prototype
+          demonstrates how modern web tools can transform campus life. Whether
+          you’re organizing or attending, Campus Event Manager is here to keep
+          you informed and inspired.
+        </p>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 Campus Event Manager. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JS to load navbar -->
+    <script>
+      fetch("nav.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Event Registration</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+ <!--navbar div-->
+  <div id="navbar"></div>
+    
+  <div class="form-card">
+    <h2>Event Registration</h2>
+    <form>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Full Name*</label>
+          <input type="text" id="name" placeholder="Enter Full Name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address*</label>
+          <input type="email" id="email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="e.g. 03xxx">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="event">Select Event*</label>
+          <select id="event" required>
+            <option value="">-- Choose an Event --</option>
+            <option value="tech">Tech Talk</option>
+            <option value="cultural">Cultural Fest</option>
+            <option value="sports">Sports Gala</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Payment Method*</label>
+          <div class="radio-group">
+            <label><input type="radio" name="payment" value="cash"> Cash</label>
+            <label><input type="radio" name="payment" value="card"> Credit Card</label>
+            <label><input type="radio" name="payment" value="jazzcash"> JazzCash</label>
+            <label><input type="radio" name="payment" value="others"> Others</label>
+          </div>
+        </div>
+        <div class="form-group full-width">
+          <label for="notes">Additional Notes</label>
+          <textarea id="notes" placeholder="Enter any notes..."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn">Register</button>
+    </form>
+  </div>
+  <script>
+      fetch("nav.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar").innerHTML = data;
+        });
+        </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+  <body>
+    <nav class="navbar" >
+      <div class="nav-left">Campus Event Manager</div>
+
+      <ul class="nav-right" id="nav-right">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="admin.html">Registration</a></li>
+      </ul>
+    </nav>
+    <style>
+      .navbar {
+        display: flex; /* Use Flexbox for layout */
+        justify-content: space-between; /* Pushes content to the ends */
+        align-items: center; /* Vertically centers the content */
+        padding: 0 20px; /* Some padding on the sides */
+        height: 70px; /* Set a height for the navbar */
+        /* Gradient blue background */
+        background: linear-gradient(
+          80deg,
+          rgb(63, 10, 103) 20%,
+          rgba(105, 14, 165, 0.86) 71%,
+          rgba(149, 54, 238, 0.745) 77%
+        );
+        color: #cbb1f6; /* Text color */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-left {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .nav-right {
+        list-style-type: none; /* Remove bullet points */
+        margin: 0;
+        padding: 30px;
+        display: flex; /* Use Flexbox for links within the list */
+      }
+
+      .nav-right li {
+        margin-left: 20px; /* Space between links */
+      }
+
+      .nav-right li a {
+        color: rgb(200, 193, 232); /* Link color */
+        text-decoration: none; /* Remove underlines */
+        padding: 10px 15px;
+        transition: background-color 0.3s;
+        border-radius: 4px;
+      }
+
+      .nav-right li a:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+      }
+    </style>
+  </body>
+</html>

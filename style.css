@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family:'poppins',sans-serif;
+  background-image: url(/pictures/download.jpg);
+  background-size: cover; /* Scales image to cover area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+  
+}
+
+.content {
+  padding: 10px;
+  color: rgb(236, 212, 246);
+  margin-top: 30px; /* Height of the navbar */
+}
+.content h1 {
+  color: rgb(239, 206, 252);
+  font-size: 90px;
+  text-align: center;
+}
+.content p {
+  font-size:x-large;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.button {
+  /* Styles to make the anchor tags look like buttons */
+  display: inline-block;
+  padding: 19px 29px;
+  background-color: #a550f0e4; /* Example background color */
+  color: rgb(248, 238, 255);
+  text-decoration: none; /* Removes the default underline from links */
+  border-radius: 15px; /* Rounds the corners */
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.button:hover {
+  background-color: #b588e5; /* Darker color on hover */
+}
+.view-btn {
+  background-color: rgba(158, 74, 231, 0.529);
+}
+/* About Us Section */
+#about {
+  max-width: fit-content;
+  padding: 40px;
+  background: #891cd2ce;
+  border: 2px solid #9238d3; /* purple border */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(107, 10, 172, 0.538);
+  margin: 22% auto 2% auto;
+}
+
+#about h1 {
+  font-size: 2em;
+  color: #ede5f2;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#about p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #ebd6ff;
+  margin-bottom: 15px;
+  text-align: justify;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#about p:last-child {
+  margin-bottom: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+.about-container {
+  display: flex;
+  align-items: center; /* vertically align image and text */
+  justify-content: center;
+  gap: 30px; /* space between image and text */
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.about-img {
+  width: 450px; /* adjust size as needed */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(229, 223, 223, 0.858);
+  height: 300px;
+}
+footer {
+  margin-top: auto;
+  background-color: #965dd4a8;
+  padding: 25px;
+  text-align: center;
+}
