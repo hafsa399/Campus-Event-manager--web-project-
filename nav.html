@@ -1,13 +1,25 @@
 <html>
   <body>
-    <nav class="navbar" >
+    <nav class="navbar">
       <div class="nav-left">Campus Event Manager</div>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-right"
+        onclick="this.closest('.navbar').classList.toggle('nav-open'); this.setAttribute('aria-expanded', this.closest('.navbar').classList.contains('nav-open'))"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
       <ul class="nav-right" id="nav-right">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="index.html#about">About</a></li>
-        <li><a href="admin.html">Registration</a></li>
+        <li><a href="admin.html">Admin</a></li>
       </ul>
     </nav>
     <style>
@@ -15,8 +27,11 @@
         display: flex; /* Use Flexbox for layout */
         justify-content: space-between; /* Pushes content to the ends */
         align-items: center; /* Vertically centers the content */
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        width: 100%;
         padding: 0 20px; /* Some padding on the sides */
-        height: 70px; /* Set a height for the navbar */
+        min-height: 70px; /* Set a height for the navbar */
         /* Gradient blue background */
         background: linear-gradient(
           80deg,
@@ -26,22 +41,48 @@
         );
         color: #cbb1f6; /* Text color */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
       }
 
       .nav-left {
         font-size: 24px;
         font-weight: bold;
+        white-space: nowrap;
       }
 
       .nav-right {
         list-style-type: none; /* Remove bullet points */
         margin: 0;
-        padding: 30px;
+        padding: 0;
         display: flex; /* Use Flexbox for links within the list */
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 42px;
+        height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.12);
+        cursor: pointer;
+      }
+
+      .nav-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        margin: 5px auto;
+        background: rgb(237, 225, 254);
+        border-radius: 2px;
       }
 
       .nav-right li {
-        margin-left: 20px; /* Space between links */
+        margin-left: 12px; /* Space between links */
       }
 
       .nav-right li a {
@@ -54,6 +95,53 @@
 
       .nav-right li a:hover {
         background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+      }
+
+      @media (max-width: 700px) {
+        .navbar {
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 14px;
+        }
+
+        .nav-left {
+          flex: 1;
+          font-size: 18px;
+          line-height: 1.25;
+          text-align: left;
+          white-space: normal;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .nav-right {
+          display: none;
+          position: absolute;
+          top: 100%;
+          right: 12px;
+          width: min(220px, calc(100vw - 24px));
+          padding: 8px;
+          background: rgba(63, 10, 103, 0.97);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          border-radius: 8px;
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+        }
+
+        .navbar.nav-open .nav-right {
+          display: block;
+        }
+
+        .nav-right li {
+          margin: 0;
+        }
+
+        .nav-right li a {
+          display: block;
+          padding: 10px 12px;
+          font-size: 15px;
+        }
       }
     </style>
   </body>

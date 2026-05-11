@@ -21,10 +21,17 @@
       </p>
 
       <div class="button-container">
-        <a href="events.html" class="button">Explore Events ➜ </a>
-        <a href="#" class="button view-btn">Learn more</a>
+        <a href="#featured-events" class="button">Explore Events ➜ </a>
+        <a href="register.html" class="button view-btn">Register Now</a>
       </div>
     </main>
+    <section id="featured-events">
+      <h1>Recent Events</h1>
+      <div id="featured-events-container"></div>
+      <div class="featured-events-actions">
+        <a href="events.html" class="button">View All Events</a>
+      </div>
+    </section>
     <section id="about">
       <h1>About Us</h1>
       <div class="about-container">
@@ -57,8 +64,88 @@
       <p>&copy; 2026 Campus Event Manager. All Rights Reserved.</p>
     </footer>
 
-    <!-- JS to load navbar -->
     <script>
+      const defaultImage = "pictures/download.jpg";
+
+      function getImageSrc(image) {
+        if (!image) return defaultImage;
+        if (
+          image.startsWith("http://") ||
+          image.startsWith("https://") ||
+          image.startsWith("data:") ||
+          image.startsWith("/")
+        ) {
+          return image;
+        }
+        if (image.startsWith("pictures/")) {
+          return image;
+        }
+        return `pictures/${image}`;
+      }
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function parseEventDate(date) {
+        const parsedDate = new Date(date);
+        return Number.isNaN(parsedDate.getTime()) ? null : parsedDate;
+      }
+
+      function getTopEvents(events) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const eventsWithDates = events.map((event, index) => ({
+          ...event,
+          originalIndex: index,
+          parsedDate: parseEventDate(event.date),
+        }));
+
+        const undatedEvents = eventsWithDates.filter((event) => !event.parsedDate);
+        const upcomingEvents = eventsWithDates
+          .filter((event) => event.parsedDate && event.parsedDate >= today)
+          .sort((a, b) => a.parsedDate - b.parsedDate);
+        const pastEvents = eventsWithDates
+          .filter((event) => event.parsedDate && event.parsedDate < today)
+          .sort((a, b) => b.parsedDate - a.parsedDate);
+
+        return [...undatedEvents, ...upcomingEvents, ...pastEvents].slice(0, 3);
+      }
+
+      fetch("events.json")
+        .then((response) => response.json())
+        .then((events) => {
+          const container = document.getElementById("featured-events-container");
+          const topEvents = getTopEvents(events);
+
+          topEvents.forEach((event) => {
+            const card = document.createElement("article");
+            const imageSrc = getImageSrc(event.image);
+            card.className = "featured-event-card";
+            card.innerHTML = `
+              <img
+                src="${escapeHtml(imageSrc)}"
+                alt="${escapeHtml(event.title)}"
+                class="featured-event-img"
+                onerror="this.onerror=null;this.src='${defaultImage}'"
+              />
+              <div class="featured-event-body">
+                <h2>${escapeHtml(event.title)}</h2>
+                <p class="featured-event-date">${escapeHtml(event.date)}</p>
+                <p class="featured-event-location">${escapeHtml(event.location)}</p>
+                <p class="featured-event-desc">${escapeHtml(event.description)}</p>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        });
+
       fetch("nav.html")
         .then((response) => response.text())
         .then((data) => {

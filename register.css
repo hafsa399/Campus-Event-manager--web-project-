@@ -2,24 +2,32 @@
 body {
   margin: 0;
   font-family:'poppins',sans-serif;
-  background-image: url(/pictures/download.jpg);
-  background-size: cover; /* Scales image to cover area */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-color: #2e0d46;
+  background-image:
+    url(/pictures/download.jpg),
+    url(/pictures/download.jpg);
+  background-size:
+    768px 640px,
+    768px 640px;
+  background-position:
+    left top,
+    right top;
+  background-repeat:
+    repeat-y,
+    repeat-y;
   
 }
-
 
     .form-card {
       background: #fbf5ffcb;
       border-radius: 12px;
       padding: 30px;
-      max-width:700px;
+      max-width:550px;
       width: 100%;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      margin: 5% 25%;
+      margin: 5% 28%;
       
-    
     }
 
     h2 {

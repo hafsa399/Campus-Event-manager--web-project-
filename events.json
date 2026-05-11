@@ -1,5 +1,12 @@
 [
   {
+    "title": "Annual Dinner 2026",
+    "date" : "upcoming",
+    "location":"outside university",
+    "image" :"AnnualDinner.jpeg",
+    "description":"can't wait to meet all students"
+  },
+  {
     "title": "Tech Talk 2026",
     "date": "feb 23,2027",
     "location": "University Auditorium",
