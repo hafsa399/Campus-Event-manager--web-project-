@@ -1,7 +1,11 @@
 <html>
   <body>
     <nav class="navbar">
-      <div class="nav-left">Campus Event Manager</div>
+      <!-- <div class="nav-left">Campus Event Manager</div> -->
+       <a href="/" class="logo-link">
+         <img src="/pictures/Campus.png" alt="Campus Event Manager Logo" class="nav-logo">
+       </a>
+       <div class="nav-left">Campus Event Manager</div> 
       <button
         class="nav-toggle"
         type="button"
@@ -25,7 +29,7 @@
     <style>
       .navbar {
         display: flex; /* Use Flexbox for layout */
-        justify-content: space-between; /* Pushes content to the ends */
+        justify-content: flex-start;
         align-items: center; /* Vertically centers the content */
         flex-wrap: wrap;
         box-sizing: border-box;
@@ -44,12 +48,22 @@
         position: relative;
         z-index: 10;
       }
-
-      .nav-left {
-        font-size: 24px;
+      .nav-logo {
+        height: 90px; /* Constrain height to fit the navbar */
+        width: auto; /* Maintains aspect ratio automatically */
+        display: block;
+      }
+      .logo-link {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+      }
+     .nav-left {
+        font-size: 20px;
         font-weight: bold;
         white-space: nowrap;
-      }
+        margin-left: 0;
+      } 
 
       .nav-right {
         list-style-type: none; /* Remove bullet points */
@@ -60,6 +74,7 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 8px;
+        margin-left: auto;
       }
 
       .nav-toggle {
@@ -105,6 +120,7 @@
         }
 
         .nav-left {
+        
           flex: 1;
           font-size: 18px;
           line-height: 1.25;

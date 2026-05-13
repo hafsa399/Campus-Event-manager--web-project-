@@ -66,16 +66,16 @@ body {
   max-width: 1200px;
   padding: 35px;
   margin: 10% auto 2% auto;
-  background: rgba(137, 28, 210, 0.24);
-  border: 2px solid #9238d3;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(107, 10, 172, 0.538);
+  /* background: rgba(137, 28, 210, 0.24);
+  border: 2px solid #9238d3; */
+  /* border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(107, 10, 172, 0.538); */
 }
 
 #featured-events h1 {
   margin: 0 0 25px;
   color: #ede5f2;
-  font-size: 2em;
+  font-size: 4em;
   text-align: center;
 }
 
@@ -133,9 +133,9 @@ body {
   line-height: 1.5;
 }
 
-.featured-events-actions {
+ .featured-events-actions {
   text-align: center;
-}
+} 
 
 .featured-events-actions .button {
   margin-top: 25px;
@@ -153,7 +153,7 @@ body {
 }
 
 #about h1 {
-  font-size: 2em;
+  font-size: 4em;
   color: #ede5f2;
   margin-bottom: 20px;
   text-align: center;
@@ -192,12 +192,85 @@ html {
 }
 footer {
   margin-top: auto;
-  background-color: #965dd4a8;
-  padding: 25px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: auto auto auto minmax(260px, 1fr);
+  align-items: start;
+  gap: 35px;
+  background-color:#401268;
+  color: #f4edf9;
+  padding: 45px 10%;
+  text-align: left;
+}
+.footer-element{
+  margin: 0;
+ margin-left: 40px;
+}
+footer img{
+  height: 230px;
+  width: auto;
 }
 
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer li {
+  margin-bottom: 9px;
+  color: #d8cfe2;
+  font-size: 14px;
+}
+
+.footer-element>h1{
+  color:  #dda1ff;
+}
+.element-heading,
+#subscription h2 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  text-transform: capitalize;
+}
+
+#subscription p {
+  margin: 0 0 12px;
+  color: #d8cfe2;
+  font-size: 13px;
+}
+
+#inputEmail {
+  width: min(260px, 100%);
+  padding: 10px 12px;
+  border: 1px solid  #ba5fee;
+  border-radius: 4px 0 0 4px;
+  background: transparent;
+  color: #ffffff;
+}
+
+#btnSubscribe {
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 0 4px 4px 0;
+  background: #ba5fee;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+footer > p:last-child {
+  grid-column: 1 / -1;
+  margin: 20px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+  color: #bdb4c7;
+  font-size: 13px;
+}
 @media (max-width: 900px) {
+  footer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   #featured-events-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -208,6 +281,21 @@ footer {
 }
 
 @media (max-width: 600px) {
+  footer {
+    grid-template-columns: 1fr;
+    padding: 35px 24px;
+  }
+
+  #inputEmail,
+  #btnSubscribe {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  #btnSubscribe {
+    margin-top: 8px;
+  }
+
   .content h1 {
     font-size: 48px;
   }
