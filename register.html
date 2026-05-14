@@ -9,20 +9,20 @@
   <div id="navbar"></div>
     
   <div class="form-card">
-    <h2>Event Registration</h2>
-    <form>
+    <h1>Event Registration</h1>
+    <form id="reg-form">
       <div class="form-grid">
         <div class="form-group">
           <label for="name">Full Name*</label>
-          <input type="text" id="name" placeholder="Enter Full Name" required>
+          <input type="text" id="name" name="fullName" placeholder="Enter Full Name" required>
         </div>
         <div class="form-group">
           <label for="email">Email Address*</label>
-          <input type="email" id="email" placeholder="Enter Email" required>
+          <input type="email" id="email" name="email" placeholder="Enter Email" required>
         </div>
         <div class="form-group">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="e.g. 03xxx">
+          <input type="tel" id="phone" name="PhoneNo" placeholder="e.g. 03xxx">
         </div>
         <div class="form-group">
           <label>Gender</label>
@@ -33,13 +33,17 @@
         </div>
         <div class="form-group">
           <label for="event">Select Event*</label>
-          <select id="event" required>
+          <select id="event" name="event" onchange="updateFee()"  required>
             <option value="">-- Choose an Event --</option>
             <option value="tech">Tech Talk</option>
             <option value="cultural">Cultural Fest</option>
             <option value="sports">Sports Gala</option>
             <option value="AnnualDinner">AnnualDinner</option>
           </select>
+        </div>
+        <div class="form-group">
+          <label for="eventFee">Fee</label>
+          <input type="text" id="eventFee" name="eventFee"   readonly placeholder="auto">
         </div>
         <div class="form-group">
           <label>Payment Method*</label>
@@ -55,7 +59,7 @@
           <textarea id="notes" placeholder="Enter any notes..."></textarea>
         </div>
       </div>
-      <button type="submit" class="btn">Register</button>
+      <button type="submit" class="submit-btn">Register</button>
     </form>
   </div>
   <script>
@@ -64,6 +68,42 @@
         .then((data) => {
           document.getElementById("navbar").innerHTML = data;
         });
+        function updateFee() {
+         const eventDropdown=document.getElementById("event");  
+        const feeInput=document.getElementById("eventFee");
+  // defining fee for each event
+  const fee={
+    tech:"500 PKR",
+    cultural:"300 PKR",
+    sports:"350 PKR",
+    AnnualDinner:"2000 PKR"
+  };
+// for select
+  const selectedEvent=eventDropdown.value;
+
+// for update
+feeInput.value=fee[selectedEvent] || "";
+        }
+        const form=document.getElementById("reg-form");
+        const fullNameInput=document.getElementById("name");
+        const eventSelect=document.getElementById("event");
+
+        form.addEventListener("submit",function (e){
+          e.preventDefault();
+         const Registration ={
+          name:fullNameInput.value,
+          event:eventSelect.value
+         };
+         // now save in local storage
+         const savedRegistrations=JSON.parse(localStorage.getItem("registrations")) || [];
+         const Registrations=Array.isArray(savedRegistrations) ? savedRegistrations : [savedRegistrations];
+         Registrations.push(Registration);
+         localStorage.setItem("registrations",JSON.stringify(Registrations));
+         alert("registration successful!");
+         form.reset();
+                 });
+
         </script>
 </body>
 </html>
+

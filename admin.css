@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family:'poppins',sans-serif;
+  min-height: 100vh;
+  background-color: #2e0d46;
+  background-image:
+    url(/pictures/download.jpg),
+    url(/pictures/download.jpg);
+  background-size:
+    768px 640px,
+    768px 640px;
+  background-position:
+    left top,
+    right top;
+  background-repeat:
+    repeat-y,
+    repeat-y;
+  
+}
+
+h1{
+     color: aliceblue;
+     text-align: center;
+}
+#registrationsTable{
+    
+     
+     color: azure;
+     background-color: #2e0d46;
+     border: 3px solid rgb(176, 102, 237);
+}

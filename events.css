@@ -44,12 +44,14 @@ body {
 #events-container {
   display: flex;
   flex-wrap: wrap; /* allows multiple rows */
-  gap: 20px; /* spacing between cards */
+  gap: 24px; /* spacing between cards */
+
+  justify-content: center;
 }
 
 .card {
-  flex: 1 1 calc(33.333% - 20px); /* 3 cards per row */
-  max-width: calc(33.333% - 20px);
+  flex: 1 1 calc(30.333% - 20px); /* 3 cards per row */
+  max-width: calc(30.333% - 20px);
   box-sizing: border-box;
   border: 2px solid #6a0dad;
   border-radius: 8px;
@@ -59,7 +61,7 @@ body {
 }
 
 .card:hover {
-  transform: translateX(6px) scale(1.01);
+   transform: translateY(-10px) scale(1.01);
   box-shadow: 0 14px 22px rgba(144, 114, 162, 0.593);
 }
 
@@ -74,18 +76,19 @@ body {
 
 .card-body {
   padding: 15px;
+  
 }
-
+ /* for tablets like screen you will see 2 cards per row */
 @media (max-width: 900px) {
   .card {
     flex: 1 1 calc(50% - 20px);
     max-width: calc(50% - 20px);
   }
 }
-
+ /* for mobile like screen 1 card per row */
 @media (max-width: 600px) {
   .card {
-    flex: 1 1 100%;
-    max-width: 100%;
+    flex: 1 1 90%;
+    max-width: 80%;
   }
 }
