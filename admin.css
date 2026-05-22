@@ -15,17 +15,27 @@ body {
   background-repeat:
     repeat-y,
     repeat-y;
-  
+
 }
 
 h1{
-     color: aliceblue;
+  margin: 5%;
+     color: rgb(243, 228, 255);
      text-align: center;
+     
 }
 #registrationsTable{
-    
-     
+  margin-top: 40px;
+      margin-left:50px ;
      color: azure;
      background-color: #2e0d46;
      border: 3px solid rgb(176, 102, 237);
+}
+#registrationsTable th,td{
+  padding: 15px;
+}
+
+.delete-btn{
+  background-color: #ff0e0e;
+  color: aliceblue;
 }

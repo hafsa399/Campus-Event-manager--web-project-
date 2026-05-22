@@ -10,15 +10,22 @@
     
   <div class="form-card">
     <h1>Event Registration</h1>
-    <form id="reg-form">
+    <form id="reg-form" onsubmit="return validateForm()"  novalidate>
       <div class="form-grid">
         <div class="form-group">
-          <label for="name">Full Name*</label>
-          <input type="text" id="name" name="fullName" placeholder="Enter Full Name" required>
+          <label for="rollNo">Roll no*</label>
+          <input type="text" id="rollNo" name="rollNo" placeholder="Enter Roll No"  >
+          <span id="err-rollNo" class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="fullName">Full Name*</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name"  >
+         <span id="err-fullName" class="error"></span>
         </div>
         <div class="form-group">
           <label for="email">Email Address*</label>
-          <input type="email" id="email" name="email" placeholder="Enter Email" required>
+          <input type="email" id="email" name="email" placeholder="Enter Email" >
+          <span class="error-msg" id="err-email"></span>
         </div>
         <div class="form-group">
           <label for="phone">Phone Number</label>
@@ -40,6 +47,7 @@
             <option value="sports">Sports Gala</option>
             <option value="AnnualDinner">AnnualDinner</option>
           </select>
+         <span id="err-event" class="error"></span>
         </div>
         <div class="form-group">
           <label for="eventFee">Fee</label>
@@ -47,7 +55,7 @@
         </div>
         <div class="form-group">
           <label>Payment Method*</label>
-          <div class="radio-group">
+          <div class="radio-group" aria-required="true">
             <label><input type="radio" name="payment" value="cash"> Cash</label>
             <label><input type="radio" name="payment" value="card"> Credit Card</label>
             <label><input type="radio" name="payment" value="jazzcash"> JazzCash</label>
@@ -62,48 +70,7 @@
       <button type="submit" class="submit-btn">Register</button>
     </form>
   </div>
-  <script>
-      fetch("nav.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("navbar").innerHTML = data;
-        });
-        function updateFee() {
-         const eventDropdown=document.getElementById("event");  
-        const feeInput=document.getElementById("eventFee");
-  // defining fee for each event
-  const fee={
-    tech:"500 PKR",
-    cultural:"300 PKR",
-    sports:"350 PKR",
-    AnnualDinner:"2000 PKR"
-  };
-// for select
-  const selectedEvent=eventDropdown.value;
-
-// for update
-feeInput.value=fee[selectedEvent] || "";
-        }
-        const form=document.getElementById("reg-form");
-        const fullNameInput=document.getElementById("name");
-        const eventSelect=document.getElementById("event");
-
-        form.addEventListener("submit",function (e){
-          e.preventDefault();
-         const Registration ={
-          name:fullNameInput.value,
-          event:eventSelect.value
-         };
-         // now save in local storage
-         const savedRegistrations=JSON.parse(localStorage.getItem("registrations")) || [];
-         const Registrations=Array.isArray(savedRegistrations) ? savedRegistrations : [savedRegistrations];
-         Registrations.push(Registration);
-         localStorage.setItem("registrations",JSON.stringify(Registrations));
-         alert("registration successful!");
-         form.reset();
-                 });
-
-        </script>
+ <script src="register.js"></script>
 </body>
 </html>
 

@@ -1,43 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>admin</title>
-     <link href="admin.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin</title>
+    <link href="admin.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <h1>Registrations Data</h1>
+    <table border="1" id="registrationsTable">
+      <thead>
+        <tr>
+          <th>Roll no</th>
+          <th>Name</th>
+          <th>Event</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
- <div id="navbar"></div>
-<h1>Registrations</h1>
-<table border="1" id="registrationsTable">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Event</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<script>
-       fetch("nav.html")
+    <script>
+      fetch("nav.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("navbar").innerHTML = data;
         });
 
-window.onload = function() {
-  const tableBody = document.querySelector("#registrationsTable tbody");
-  const savedRegistrations = JSON.parse(localStorage.getItem("registrations")) || [];
-  const registrations = Array.isArray(savedRegistrations) ? savedRegistrations : [savedRegistrations];
+      window.onload = function () {
+        const tableBody = document.querySelector("#registrationsTable tbody");
 
-  registrations.forEach(reg => {
-    const row = document.createElement("tr");
-    row.innerHTML = `<td>${reg.name}</td><td>${reg.event}</td>`;
-    tableBody.appendChild(row);
-  });
-};
-</script>
-</body>
+        function renderRegistrations() {
+          const savedRegistrations =
+            JSON.parse(localStorage.getItem("registrations")) || [];
+          const registrations = Array.isArray(savedRegistrations)
+            ? savedRegistrations
+            : [savedRegistrations];
+          tableBody.innerHTML = "";
+
+          registrations.forEach((reg, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+        <td>${reg.rollNo || ""}</td>
+        <td>${reg.fullName || ""}</td>
+        <td>${reg.event || ""}</td>
+        <td>${reg.email || ""}</td>
+        <td><button type="button" class="delete-btn" data-index="${index}">Delete</button></td>
+      `;
+            tableBody.appendChild(row);
+          });
+        }
+
+        function deleteRegistration(index) {
+          const savedRegistrations =
+            JSON.parse(localStorage.getItem("registrations")) || [];
+          const registrations = Array.isArray(savedRegistrations)
+            ? savedRegistrations
+            : [savedRegistrations];
+          registrations.splice(index, 1);
+          localStorage.setItem("registrations", JSON.stringify(registrations));
+          renderRegistrations();
+        }
+
+        tableBody.addEventListener("click", function (event) {
+          if (event.target.matches(".delete-btn")) {
+            const index = Number(event.target.dataset.index);
+            deleteRegistration(index);
+          }
+        });
+
+        renderRegistrations();
+      };
+    </script>
+  </body>
 </html>
