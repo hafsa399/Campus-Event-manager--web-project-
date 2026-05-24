@@ -3,18 +3,7 @@ body {
   font-family:'poppins',sans-serif;
   min-height: 100vh;
   background-color: #2e0d46;
-  background-image:
-    url(/pictures/download.jpg),
-    url(/pictures/download.jpg);
-  background-size:
-    763px 640px,
-    763px 640px;
-  background-position:
-    left top,
-    right top;
-  background-repeat:
-    repeat-y,
-    repeat-y;
+
 }
 
    h1 {
