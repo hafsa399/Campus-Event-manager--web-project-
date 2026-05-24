@@ -10,60 +10,20 @@
   
     <div id="navbar"></div>
     <h1>Upcoming Events</h1>
+
+
+    <div class="filter-bar">
+  <label for="categoryFilter">Filter by category:</label>
+  <select id="categoryFilter">
+    <option value="">All Events</option>
+    <option value="tech">Tech</option>
+    <option value="cultural">Cultural</option>
+    <option value="sports">Sports</option>
+  </select>
+</div>
+
     <div id="events-container"></div>
 
-    <script>
-      const defaultImage = "pictures/download.jpg";
-
-      function getImageSrc(image) {
-        if (!image) return defaultImage;
-        if (
-          image.startsWith("http://") ||
-          image.startsWith("https://") ||
-          image.startsWith("data:") ||
-          image.startsWith("/")
-        ) {
-          return image;
-        }
-        if (image.startsWith("pictures/")) {
-          return image;
-        }
-        return `pictures/${image}`;
-      }
-
-      fetch("events.json")
-        .then((response) => response.json())
-        .then((events) => {
-          const container = document.getElementById("events-container");
-          events.forEach((event) => {
-            const card = document.createElement("div");
-            const imageSrc = getImageSrc(event.image);
-            card.className = "card";
-            card.innerHTML = `
-              <img
-                src="${imageSrc}"
-                alt="${event.title}"
-                class="card-img"
-                onerror="this.onerror=null;this.src='${defaultImage}'"
-              />
-              <div class="card-body">
-                <ul>
-                  <li class="card-title">${event.title}</li>
-                  <li class="card-date">${event.date}</li>
-                  <li class="venu">${event.location}</li>
-                  <li class="card-desc">${event.description}</li>
-                </ul>
-              </div>
-            `;
-            container.appendChild(card);
-          });
-        });
-
-      fetch("nav.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("navbar").innerHTML = data;
-        });
-    </script>
+   <script src="app.js"></script>
   </body>
 </html>

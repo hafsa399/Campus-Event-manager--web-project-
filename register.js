@@ -1,95 +1,110 @@
- 
- 
- fetch("nav.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("navbar").innerHTML = data;
-        });
+async function loadNavbar() {
+  const response = await fetch("nav.html");
+  const data = await response.text();
+  document.getElementById("navbar").innerHTML = data;
+}
 
-        // fee update
-        function updateFee() {
-         const eventDropdown=document.getElementById("event");  
-        const feeInput=document.getElementById("eventFee");
-  // defining fee for each event
-  const fee={
-    tech:"500 PKR",
-    cultural:"300 PKR",
-    sports:"350 PKR",
-    AnnualDinner:"2000 PKR"
+loadNavbar();
+
+// fee update
+function updateFee() {
+  const eventDropdown = document.getElementById("event");
+  const feeInput = document.getElementById("eventFee");
+
+  const fee = {
+    tech: "500 PKR",
+    cultural: "300 PKR",
+    sports: "350 PKR",
+    AnnualDinner: "2000 PKR",
   };
-// for select
-  const selectedEvent=eventDropdown.value;
 
-// for update
-feeInput.value=fee[selectedEvent] || "";
-        }
-        const form=document.getElementById("reg-form");
-        const fullNameInput=document.getElementById("fullName");
-        const eventSelect=document.getElementById("event");
-        const rollNOInput=document.getElementById("rollNo");
-        const emailInput=document.getElementById("email");
+  const selectedEvent = eventDropdown.value;
+  feeInput.value = fee[selectedEvent] || "";
+}
 
-        form.addEventListener("submit",function (e){
-          e.preventDefault();
-          if (!validateForm()) {
-            return;
-          }
-         const Registration ={
-          rollNo:rollNOInput.value.trim(),
-          fullName:fullNameInput.value.trim(),
-          event:eventSelect.value,
-          email:emailInput.value.trim()
-         };
-         // now save in local storage
-         const savedRegistrations=JSON.parse(localStorage.getItem("registrations")) || [];
-         const Registrations=Array.isArray(savedRegistrations) ? savedRegistrations : [savedRegistrations];
-         Registrations.push(Registration);
-         localStorage.setItem("registrations",JSON.stringify(Registrations));
-         alert("Registration successful!");
-         form.reset();
-                 });
+const form = document.getElementById("reg-form");
+const fullNameInput = document.getElementById("fullName");
+const eventSelect = document.getElementById("event");
+const rollNOInput = document.getElementById("rollNo");
+const emailInput = document.getElementById("email");
+const formMessage = document.getElementById("form-message");
 
-        function validateForm(){
-          let isValid=true;
-          // remove old error msg before checking, prevent duplication or outdated errors
-          clearError(rollNOInput, "err-rollNo");
-          clearError(fullNameInput, "err-fullName");
-          clearError(emailInput, "err-email");
-          clearError(eventSelect, "err-event");
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-          if (!rollNOInput.value.trim()){
-            showError(rollNOInput, "err-rollNo", "Roll number is required.");
-            isValid=false;
-          }
+  formMessage.textContent = "";
 
-          if (!fullNameInput.value.trim()){
-            showError(fullNameInput, "err-fullName", "Full name is required.");
-            isValid=false;
-          }
+  if (!validateForm()) {
+    return;
+  }
 
-          const emailValue=emailInput.value.trim();
-          if (!emailValue){
-            showError(emailInput, "err-email", "Email address is required.");
-            isValid=false;
-          }
+  const registration = {
+    rollNo: rollNOInput.value.trim(),
+    fullName: fullNameInput.value.trim(),
+    event: eventSelect.value,
+    email: emailInput.value.trim(),
+  };
 
-          if (!eventSelect.value){
-            showError(eventSelect, "err-event", "Please choose an event.");
-            isValid=false;
-          }
+  try {
+    const response = await fetch("http://localhost:3000/registrations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(registration),
+    });
 
-          return isValid;
-        }
+    if (!response.ok) {
+      throw new Error("Registration failed");
+    }
 
-   
+    formMessage.textContent = "Registration successful!";
+    formMessage.style.color = "green";
+    form.reset();
+  } catch (error) {
+    formMessage.textContent = "Could not save registration. Make sure JSON Server is running.";
+    formMessage.style.color = "red";
+  }
+});
+
+function validateForm() {
+  let isValid = true;
+
+  clearError(rollNOInput, "err-rollNo");
+  clearError(fullNameInput, "err-fullName");
+  clearError(emailInput, "err-email");
+  clearError(eventSelect, "err-event");
+
+  if (!rollNOInput.value.trim()) {
+    showError(rollNOInput, "err-rollNo", "Roll number is required.");
+    isValid = false;
+  }
+
+  if (!fullNameInput.value.trim()) {
+    showError(fullNameInput, "err-fullName", "Full name is required.");
+    isValid = false;
+  }
+
+  const emailValue = emailInput.value.trim();
+  if (!emailValue) {
+    showError(emailInput, "err-email", "Email address is required.");
+    isValid = false;
+  }
+
+  if (!eventSelect.value) {
+    showError(eventSelect, "err-event", "Please choose an event.");
+    isValid = false;
+  }
+
+  return isValid;
+}
+
 function showError(input, errorId, message) {
-  input.style.border = "2px solid red"; // highlight field
-  document.getElementById(errorId).innerText = message; // show error text
+  input.style.border = "2px solid red";
+  document.getElementById(errorId).innerText = message;
 }
 
 function clearError(input, errorId) {
-  input.style.border = ""; // remove red border
-  document.getElementById(errorId).innerText = ""; // clear error text
+  input.style.border = "";
+  document.getElementById(errorId).innerText = "";
 }
-
-        

@@ -1,0 +1,66 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Annual Dinner 2026",
+      "date": "2026-12-20",
+      "location": "Outside University",
+      "category": "cultural",
+      "image": "AnnualDinner.jpeg",
+      "description": "Can't wait to meet all students"
+    },
+    {
+      "id": "2",
+      "title": "Tech Talk 2026",
+      "date": "2027-02-23",
+      "location": "University Auditorium",
+      "category": "tech",
+      "image": "image.png",
+      "description": "A seminar on AI and future technologies."
+    },
+    {
+      "id": "3",
+      "title": "Cultural Fest",
+      "date": "2034-05-12",
+      "location": "Campus Grounds",
+      "category": "cultural",
+      "image": "culturalimage.png",
+      "description": "Music, food stalls, and performances."
+    },
+    {
+      "id": "4",
+      "title": "Sports Gala",
+      "date": "2035-09-21",
+      "location": "Sports Complex",
+      "category": "sports",
+      "image": "sportsgala.png",
+      "description": "Inter-departmental competitions and fun games."
+    },
+    {
+      "id": "5",
+      "title": "AI Automation",
+      "date": "2026-07-21",
+      "location": "Main Hall, Department of CS",
+      "category": "tech",
+      "image": "Digital Video Art Alive.jpg",
+      "description": "Departmental competitions and fun activities."
+    }
+  ],
+  "registrations": [
+    {
+      "rollNo": "1070",
+      "fullName": "Hafsa Nasir",
+      "event": "cultural",
+      "email": "hafsansir399@gmail.com",
+      "id": "A0OaJOlPWbM"
+    },
+    {
+      "rollNo": "1038",
+      "fullName": "Nayab anwer",
+      "event": "tech",
+      "email": "nayab549@gmail.com",
+      "id": "rsQYVkyX2WE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

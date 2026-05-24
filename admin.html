@@ -3,76 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>admin</title>
+    <title>Admin</title>
     <link href="admin.css" rel="stylesheet" />
   </head>
   <body>
     <div id="navbar"></div>
-    <h1>Registrations Data</h1>
-    <table border="1" id="registrationsTable">
-      <thead>
-        <tr>
-          <th>Roll no</th>
-          <th>Name</th>
-          <th>Event</th>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
 
-    <script>
-      fetch("nav.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("navbar").innerHTML = data;
-        });
+    <main class="admin-page">
+      <h1>Admin Dashboard</h1>
 
-      window.onload = function () {
-        const tableBody = document.querySelector("#registrationsTable tbody");
+      <section class="stats-grid">
+        <div class="stat-box">
+          <span>Total Events</span>
+          <strong id="totalEvents">0</strong>
+        </div>
+        <div class="stat-box">
+          <span>Total Registrations</span>
+          <strong id="totalRegistrations">0</strong>
+        </div>
+        <div class="stat-box">
+          <span>Tech Events</span>
+          <strong id="techEvents">0</strong>
+        </div>
+      </section>
 
-        function renderRegistrations() {
-          const savedRegistrations =
-            JSON.parse(localStorage.getItem("registrations")) || [];
-          const registrations = Array.isArray(savedRegistrations)
-            ? savedRegistrations
-            : [savedRegistrations];
-          tableBody.innerHTML = "";
+      <section class="admin-section">
+        <h2>Manage Events</h2>
+        <p id="eventMessage"></p>
 
-          registrations.forEach((reg, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-        <td>${reg.rollNo || ""}</td>
-        <td>${reg.fullName || ""}</td>
-        <td>${reg.event || ""}</td>
-        <td>${reg.email || ""}</td>
-        <td><button type="button" class="delete-btn" data-index="${index}">Delete</button></td>
-      `;
-            tableBody.appendChild(row);
-          });
-        }
+        <form id="eventForm" class="event-form">
+          <input type="hidden" id="eventId" />
 
-        function deleteRegistration(index) {
-          const savedRegistrations =
-            JSON.parse(localStorage.getItem("registrations")) || [];
-          const registrations = Array.isArray(savedRegistrations)
-            ? savedRegistrations
-            : [savedRegistrations];
-          registrations.splice(index, 1);
-          localStorage.setItem("registrations", JSON.stringify(registrations));
-          renderRegistrations();
-        }
+          <label for="title">Title</label>
+          <input type="text" id="title" placeholder="Event title" />
 
-        tableBody.addEventListener("click", function (event) {
-          if (event.target.matches(".delete-btn")) {
-            const index = Number(event.target.dataset.index);
-            deleteRegistration(index);
-          }
-        });
+          <label for="date">Date</label>
+          <input type="date" id="date" />
 
-        renderRegistrations();
-      };
-    </script>
+          <label for="location">Location</label>
+          <input type="text" id="location" placeholder="Event location" />
+
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="">Choose category</option>
+            <option value="tech">Tech</option>
+            <option value="cultural">Cultural</option>
+            <option value="sports">Sports</option>
+          </select>
+
+          <label for="image">Image File Name</label>
+          <input type="text" id="image" placeholder="image.png" />
+
+          <label for="description">Description</label>
+          <textarea id="description" placeholder="Event description"></textarea>
+
+          <div class="form-actions">
+            <button type="submit" id="saveEventBtn">Add Event</button>
+            <button type="button" id="cancelEditBtn">Cancel Edit</button>
+          </div>
+        </form>
+
+        <table id="eventsTable">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="admin-section">
+        <h2>Registrations Data</h2>
+        <table id="registrationsTable">
+          <thead>
+            <tr>
+              <th>Roll no</th>
+              <th>Name</th>
+              <th>Event</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
   </body>
 </html>

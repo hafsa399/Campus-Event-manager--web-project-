@@ -1,41 +1,139 @@
 body {
   margin: 0;
-  font-family:'poppins',sans-serif;
+  font-family: "poppins", sans-serif;
   min-height: 100vh;
   background-color: #2e0d46;
-  background-image:
-    url(/pictures/download.jpg),
-    url(/pictures/download.jpg);
-  background-size:
-    768px 640px,
-    768px 640px;
-  background-position:
-    left top,
-    right top;
-  background-repeat:
-    repeat-y,
-    repeat-y;
-
+  color: rgb(243, 228, 255);
 }
 
-h1{
-  margin: 5%;
-     color: rgb(243, 228, 255);
-     text-align: center;
-     
-}
-#registrationsTable{
-  margin-top: 40px;
-      margin-left:50px ;
-     color: azure;
-     background-color: #2e0d46;
-     border: 3px solid rgb(176, 102, 237);
-}
-#registrationsTable th,td{
-  padding: 15px;
+.admin-page {
+  width: min(1150px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 60px;
 }
 
-.delete-btn{
+h1 {
+  margin: 30px 0;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 0 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-box {
+  border: 2px solid rgb(176, 102, 237);
+  background-color: #401268;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.stat-box span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.stat-box strong {
+  font-size: 32px;
+}
+
+.admin-section {
+  margin-top: 28px;
+  padding: 22px;
+  border: 2px solid rgb(176, 102, 237);
+  border-radius: 8px;
+  background-color: #351052;
+}
+
+.event-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  margin-bottom: 24px;
+}
+
+.event-form label {
+  font-weight: bold;
+}
+
+.event-form input,
+.event-form select,
+.event-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid rgb(176, 102, 237);
+  border-radius: 6px;
+}
+
+.event-form textarea,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  padding: 9px 13px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#saveEventBtn,
+.edit-event-btn {
+  background-color: #9b30ff;
+  color: #fff;
+}
+
+#cancelEditBtn {
+  background-color: #d8cfe2;
+  color: #2e0d46;
+}
+
+.delete-btn {
   background-color: #ff0e0e;
   color: aliceblue;
+}
+
+#eventMessage {
+  min-height: 22px;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: azure;
+  background-color: #2e0d46;
+  border: 3px solid rgb(176, 102, 237);
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid rgb(176, 102, 237);
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  .stats-grid,
+  .event-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-section {
+    overflow-x: auto;
+  }
 }
