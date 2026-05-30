@@ -130,3 +130,5 @@ if (document.getElementById("events-container")) {
 if (document.getElementById("featured-events-container")) {
   loadHomePage();
 }
+
+

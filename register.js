@@ -98,13 +98,19 @@ function validateForm() {
 
   return isValid;
 }
+// for error handling 
+function showError(inputE1, errorId, message){
+  inputE1.classList.add("input-error");
+  const span = document.getElementById(errorId);
+  span.textContent = message;
+  span.classList.add("visible");
 
-function showError(input, errorId, message) {
-  input.style.border = "2px solid red";
-  document.getElementById(errorId).innerText = message;
 }
 
-function clearError(input, errorId) {
-  input.style.border = "";
-  document.getElementById(errorId).innerText = "";
+function clearError(inputE1, errorId){
+  inputE1.classList.remove("input-error");
+  const span = document.getElementById(errorId);
+  span.textContent = "";
+  span.classList.remove("visible");
+
 }

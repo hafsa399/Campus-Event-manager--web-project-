@@ -44,6 +44,15 @@
       "category": "tech",
       "image": "Digital Video Art Alive.jpg",
       "description": "Departmental competitions and fun activities."
+    },
+    {
+      "title": "ACT AI test",
+      "date": "2026-05-23",
+      "location": "online",
+      "category": "tech",
+      "image": "download (2).jpg",
+      "description": "for AI ,IT,CS student .this is from hec",
+      "id": "FuGD9xxKzz0"
     }
   ],
   "registrations": [
@@ -60,6 +69,13 @@
       "event": "tech",
       "email": "nayab549@gmail.com",
       "id": "rsQYVkyX2WE"
+    },
+    {
+      "rollNo": "10453",
+      "fullName": "rehana",
+      "event": "sports",
+      "email": "rehana459@gmail.com",
+      "id": "RS9gRjSHcj0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
