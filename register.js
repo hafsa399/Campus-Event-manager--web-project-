@@ -1,10 +1,3 @@
-async function loadNavbar() {
-  const response = await fetch("nav.html");
-  const data = await response.text();
-  document.getElementById("navbar").innerHTML = data;
-}
-
-loadNavbar();
 
 // fee update
 function updateFee() {

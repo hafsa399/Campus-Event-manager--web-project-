@@ -16,11 +16,6 @@ const cancelEditBtn = document.getElementById("cancelEditBtn");
 let eventsList = [];
 let registrationsList = [];
 
-async function loadNavbar() {
-  const response = await fetch("nav.html");
-  const data = await response.text();
-  document.getElementById("navbar").innerHTML = data;
-}
 
 async function getEvents() {
   const response = await fetch(EVENTS_API);
@@ -247,6 +242,6 @@ document.addEventListener("click", async function (event) {
 
 cancelEditBtn.addEventListener("click", resetForm);
 
-loadNavbar();
+
 getEvents();
 getRegistrations();

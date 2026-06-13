@@ -2,7 +2,7 @@ const API_URL = "http://localhost:3000/events";
 const defaultImage = "pictures/download.jpg";
 
 let allEvents = [];
-
+// to correctly load event images
 function getImage(image) {
   if (!image) {
     return defaultImage;
@@ -15,11 +15,11 @@ function getImage(image) {
   return "pictures/" + image;
 }
 
-async function loadNavbar() {
-  const response = await fetch("nav.html");
-  const navbar = await response.text();
-  document.getElementById("navbar").innerHTML = navbar;
-}
+// async function loadNavbar() {
+//   const response = await fetch("nav.html");
+//   const navbar = await response.text();
+//   document.getElementById("navbar").innerHTML = navbar;
+// }
 
 async function getEvents() {
   const response = await fetch(API_URL);
@@ -120,7 +120,7 @@ async function loadHomePage() {
   }
 }
 
-loadNavbar();
+// loadNavbar();
 
 if (document.getElementById("events-container")) {
   loadEventsPage();
