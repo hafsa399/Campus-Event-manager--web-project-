@@ -76,6 +76,13 @@
       "event": "sports",
       "email": "rehana459@gmail.com",
       "id": "RS9gRjSHcj0"
+    },
+    {
+      "rollNo": "1045",
+      "fullName": "laiba",
+      "event": "cultural",
+      "email": "laiba332@gmail.com",
+      "id": "F1J-RTBRBSU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

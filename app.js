@@ -15,11 +15,6 @@ function getImage(image) {
   return "pictures/" + image;
 }
 
-// async function loadNavbar() {
-//   const response = await fetch("nav.html");
-//   const navbar = await response.text();
-//   document.getElementById("navbar").innerHTML = navbar;
-// }
 
 async function getEvents() {
   const response = await fetch(API_URL);
@@ -108,7 +103,7 @@ function showFeaturedEvents(events) {
     container.appendChild(card);
   });
 }
-
+// fetch events again
 async function loadHomePage() {
   const container = document.getElementById("featured-events-container");
 
@@ -120,7 +115,6 @@ async function loadHomePage() {
   }
 }
 
-// loadNavbar();
 
 if (document.getElementById("events-container")) {
   loadEventsPage();
